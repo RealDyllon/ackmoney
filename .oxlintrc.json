@@ -1,0 +1,29 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "react", "jsx-a11y", "vitest", "unicorn", "oxc"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn"
+  },
+  "env": {
+    "browser": true,
+    "es2024": true
+  },
+  "settings": {
+    "react": {
+      "version": "19.2.0"
+    }
+  },
+  "ignorePatterns": [
+    "dist/**",
+    ".tanstack/**",
+    "coverage/**",
+    "**/*.gen.*",
+    "src/routeTree.gen.ts"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "vitest/require-mock-type-parameters": "off"
+  }
+}

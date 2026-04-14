@@ -1,1 +1,1 @@
-export const DEFAULT_CURRENCY = 'SGD'
+export const DEFAULT_CURRENCY = "SGD";

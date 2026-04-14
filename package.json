@@ -11,7 +11,12 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:unit": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix .",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "check": "npm run lint && npm run format:check"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -44,9 +49,14 @@
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^6.0.1",
     "jsdom": "^28.1.0",
+    "oxfmt": "0.45.0",
+    "oxlint": "1.60.0",
     "typescript": "^5.7.2",
     "vite": "^8.0.0",
     "vitest": "^3.0.5"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

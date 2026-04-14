@@ -1,6 +1,6 @@
-import { Link } from '@tanstack/react-router'
-import ThemeToggle from './ThemeToggle'
-import { appNavItems } from './navigation'
+import { Link } from "@tanstack/react-router";
+import ThemeToggle from "./ThemeToggle";
+import { appNavItems } from "./navigation";
 
 export default function Header() {
   return (
@@ -18,9 +18,9 @@ export default function Header() {
             <Link
               key={to}
               to={to}
-              activeOptions={{ exact: to === '/' }}
+              activeOptions={{ exact: to === "/" }}
               className="nav-link"
-              activeProps={{ className: 'nav-link is-active' }}
+              activeProps={{ className: "nav-link is-active" }}
             >
               {label}
             </Link>
@@ -35,5 +35,5 @@ export default function Header() {
         </div>
       </nav>
     </header>
-  )
+  );
 }

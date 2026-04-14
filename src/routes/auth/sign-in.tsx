@@ -1,30 +1,30 @@
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
-import { useState } from 'react'
-import { authClient } from '#/lib/auth/client'
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import { authClient } from "#/lib/auth/client";
 
-export const Route = createFileRoute('/auth/sign-in')({
+export const Route = createFileRoute("/auth/sign-in")({
   component: SignInPage,
-})
+});
 
 function SignInPage() {
-  const navigate = useNavigate()
-  const search = Route.useSearch() as { redirectTo?: string }
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [name, setName] = useState('')
-  const [mode, setMode] = useState<'sign-in' | 'sign-up'>('sign-in')
-  const [error, setError] = useState<string | null>(null)
-  const [isPending, setIsPending] = useState(false)
+  const navigate = useNavigate();
+  const search = Route.useSearch() as { redirectTo?: string };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [mode, setMode] = useState<"sign-in" | "sign-up">("sign-in");
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, setIsPending] = useState(false);
 
-  const redirectTo = search.redirectTo || '/transactions'
+  const redirectTo = search.redirectTo || "/transactions";
 
   const onEmailSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setIsPending(true)
-    setError(null)
+    event.preventDefault();
+    setIsPending(true);
+    setError(null);
 
     const result =
-      mode === 'sign-in'
+      mode === "sign-in"
         ? await authClient.signIn.email({
             email,
             password,
@@ -33,33 +33,33 @@ function SignInPage() {
             email,
             password,
             name,
-          })
+          });
 
-    setIsPending(false)
+    setIsPending(false);
 
     if (result.error) {
-      setError(result.error.message || 'Unable to continue with email/password')
-      return
+      setError(result.error.message || "Unable to continue with email/password");
+      return;
     }
 
-    await navigate({ to: redirectTo })
-  }
+    await navigate({ to: redirectTo });
+  };
 
   const onGoogleSignIn = async () => {
-    setIsPending(true)
-    setError(null)
+    setIsPending(true);
+    setError(null);
 
     const result = await authClient.signIn.social({
-      provider: 'google',
+      provider: "google",
       callbackURL: redirectTo,
-    })
+    });
 
-    setIsPending(false)
+    setIsPending(false);
 
     if (result.error) {
-      setError(result.error.message || 'Google sign-in failed')
+      setError(result.error.message || "Google sign-in failed");
     }
-  }
+  };
 
   return (
     <main className="page-wrap px-4 pb-24 pt-10 md:pb-8">
@@ -70,16 +70,16 @@ function SignInPage() {
         </p>
 
         <div className="mb-4 flex gap-2 text-sm">
-          <button className="nav-link" onClick={() => setMode('sign-in')} type="button">
+          <button className="nav-link" onClick={() => setMode("sign-in")} type="button">
             Sign in
           </button>
-          <button className="nav-link" onClick={() => setMode('sign-up')} type="button">
+          <button className="nav-link" onClick={() => setMode("sign-up")} type="button">
             Create account
           </button>
         </div>
 
         <form className="space-y-3" onSubmit={onEmailSubmit}>
-          {mode === 'sign-up' ? (
+          {mode === "sign-up" ? (
             <input
               required
               className="w-full rounded-md border border-[var(--line)] bg-transparent px-3 py-2"
@@ -104,8 +104,16 @@ function SignInPage() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-          <button disabled={isPending} className="w-full rounded-md bg-[var(--sea)] px-3 py-2 text-black" type="submit">
-            {isPending ? 'Please wait...' : mode === 'sign-in' ? 'Sign in with email' : 'Create account'}
+          <button
+            disabled={isPending}
+            className="w-full rounded-md bg-[var(--sea)] px-3 py-2 text-black"
+            type="submit"
+          >
+            {isPending
+              ? "Please wait..."
+              : mode === "sign-in"
+                ? "Sign in with email"
+                : "Create account"}
           </button>
         </form>
 
@@ -127,5 +135,5 @@ function SignInPage() {
         {error ? <p className="mt-3 text-sm text-red-400">{error}</p> : null}
       </section>
     </main>
-  )
+  );
 }

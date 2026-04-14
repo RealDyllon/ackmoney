@@ -1,11 +1,11 @@
-import { afterEach, vi } from 'vitest'
-import { cleanup } from '@testing-library/react'
+import { afterEach, vi } from "vitest";
+import { cleanup } from "@testing-library/react";
 
 afterEach(() => {
-  cleanup()
-})
+  cleanup();
+});
 
-vi.stubGlobal('matchMedia', (query: string) => ({
+vi.stubGlobal("matchMedia", (query: string) => ({
   matches: false,
   media: query,
   onchange: null,
@@ -14,4 +14,4 @@ vi.stubGlobal('matchMedia', (query: string) => ({
   addEventListener: vi.fn(),
   removeEventListener: vi.fn(),
   dispatchEvent: vi.fn(),
-}))
+}));

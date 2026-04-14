@@ -1,3 +1,3 @@
 export const budgetsFeature = {
-  key: 'budgets',
-}
+  key: "budgets",
+};

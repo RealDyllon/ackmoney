@@ -1,15 +1,9 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { Button } from '#/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '#/components/ui/card'
-import { appEnv } from '#/lib/config/env'
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Button } from "#/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "#/components/ui/card";
+import { appEnv } from "#/lib/config/env";
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute("/")({ component: App });
 
 function App() {
   return (
@@ -54,5 +48,5 @@ function App() {
         </Card>
       </section>
     </main>
-  )
+  );
 }
