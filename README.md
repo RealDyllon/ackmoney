@@ -210,6 +210,26 @@ Loaders simplify your data fetching logic dramatically. Check out more informati
 
 Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
 
+## Database (SQLite local-first MVP)
+
+The project now includes a local-first SQLite persistence layer with Drizzle schema definitions under `src/db/schema/`.
+
+### Generate / apply schema
+
+```bash
+npm run db:generate
+npm run db:migrate
+```
+
+### Seed defaults
+
+```bash
+npm run db:seed
+```
+
+Seed data includes a demo Singapore user profile, SG spending/income categories, and sample SG accounts.
+
+
 # Learn More
 
 You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
