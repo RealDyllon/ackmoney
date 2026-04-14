@@ -1,3 +1,3 @@
 export const accountsFeature = {
-  key: 'accounts',
-}
+  key: "accounts",
+};

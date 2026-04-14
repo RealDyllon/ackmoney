@@ -1,1 +1,1 @@
-export const DEFAULT_TIMEZONE = 'Asia/Singapore'
+export const DEFAULT_TIMEZONE = "Asia/Singapore";

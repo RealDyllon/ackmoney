@@ -1,7 +1,7 @@
-export const DEFAULT_LOCALE = 'en-SG'
+export const DEFAULT_LOCALE = "en-SG";
 
 export {
   createTransactionSchema,
   editTransactionSchema,
   recurringBillSchema,
-} from '#/lib/validation/finance'
+} from "#/lib/validation/finance";

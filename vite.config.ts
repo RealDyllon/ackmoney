@@ -1,17 +1,17 @@
-import { defineConfig } from 'vite'
-import { devtools } from '@tanstack/devtools-vite'
+import { defineConfig } from "vite";
+import { devtools } from "@tanstack/devtools-vite";
 
-import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 
-import viteReact from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import { nitro } from 'nitro/vite'
+import viteReact from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import { nitro } from "nitro/vite";
 
 const config = defineConfig({
   test: {
-    environment: 'jsdom',
-    setupFiles: ['./src/setupTests.ts'],
-    exclude: ['tests/e2e/**', '**/node_modules/**', '**/.output/**'],
+    environment: "jsdom",
+    setupFiles: ["./src/setupTests.ts"],
+    exclude: ["tests/e2e/**", "**/node_modules/**", "**/.output/**"],
   },
   resolve: { tsconfigPaths: true },
   plugins: [
@@ -21,6 +21,6 @@ const config = defineConfig({
     tanstackStart(),
     viteReact(),
   ],
-})
+});
 
-export default config
+export default config;
