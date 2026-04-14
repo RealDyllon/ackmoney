@@ -64,6 +64,10 @@ CI runs:
 To enforce merge blocking, add **Lint & Format** as a required status check in
 your branch protection rules for `main`.
 
+If your branch needs conflict resolution before merge, re-run the local
+remediation flow (`npm run lint:fix`, `npm run format`, then checks) after
+resolving conflicts to keep CI green.
+
 ## End-to-end testing
 
 This project also includes [Playwright](https://playwright.dev/) E2E coverage for the initial app load screen:
