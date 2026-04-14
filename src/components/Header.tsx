@@ -27,7 +27,10 @@ export default function Header() {
           ))}
         </div>
 
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center gap-2">
+          <Link to="/auth/sign-in" className="nav-link">
+            Sign in
+          </Link>
           <ThemeToggle />
         </div>
       </nav>
