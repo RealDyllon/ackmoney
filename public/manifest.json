@@ -1,0 +1,8 @@
+{
+  "short_name": "AckMoney",
+  "name": "AckMoney App",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
