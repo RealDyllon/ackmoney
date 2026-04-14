@@ -22,9 +22,7 @@ function BudgetsPage() {
           Server-scoped count for user: {finance.budgetsCount}
         </p>
         <button
-          onClick={() =>
-            incrementFinanceCounter({ data: { resource: "budgetsCount" } })
-          }
+          onClick={() => incrementFinanceCounter({ data: { resource: "budgetsCount" } })}
           className="mt-4 rounded-md border border-[var(--line)] px-3 py-2"
           type="button"
         >

@@ -1,39 +1,43 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { useState } from 'react'
-import { authClient } from '#/lib/auth/client'
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { authClient } from "#/lib/auth/client";
 
-export const Route = createFileRoute('/auth/2fa')({
+export const Route = createFileRoute("/auth/2fa")({
   component: TwoFactorPage,
-})
+});
 
 function TwoFactorPage() {
-  const [password, setPassword] = useState('')
-  const [code, setCode] = useState('')
-  const [totpUri, setTotpUri] = useState<string | null>(null)
-  const [status, setStatus] = useState<string | null>(null)
+  const [password, setPassword] = useState("");
+  const [code, setCode] = useState("");
+  const [totpUri, setTotpUri] = useState<string | null>(null);
+  const [status, setStatus] = useState<string | null>(null);
 
   const enable2fa = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setStatus(null)
+    event.preventDefault();
+    setStatus(null);
 
-    const setup = await authClient.twoFactor.enable({ password })
+    const setup = await authClient.twoFactor.enable({ password });
 
     if (setup.error) {
-      setStatus(setup.error.message || 'Could not initialize 2FA')
-      return
+      setStatus(setup.error.message || "Could not initialize 2FA");
+      return;
     }
 
-    setTotpUri(setup.data?.totpURI ?? null)
-    setStatus('Scan the URI in your authenticator app, then verify below.')
-  }
+    setTotpUri(setup.data?.totpURI ?? null);
+    setStatus("Scan the URI in your authenticator app, then verify below.");
+  };
 
   const verify2fa = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    const result = await authClient.twoFactor.verifyTotp({ code })
+    const result = await authClient.twoFactor.verifyTotp({ code });
 
-    setStatus(result.error ? (result.error.message ?? '2FA verification failed') : '2FA enabled successfully.')
-  }
+    setStatus(
+      result.error
+        ? (result.error.message ?? "2FA verification failed")
+        : "2FA enabled successfully.",
+    );
+  };
 
   return (
     <main className="page-wrap px-4 pb-24 pt-10 md:pb-8">
@@ -58,7 +62,9 @@ function TwoFactorPage() {
         </form>
 
         {totpUri ? (
-          <pre className="mt-4 overflow-auto rounded-md border border-[var(--line)] p-3 text-xs">{totpUri}</pre>
+          <pre className="mt-4 overflow-auto rounded-md border border-[var(--line)] p-3 text-xs">
+            {totpUri}
+          </pre>
         ) : null}
 
         <form onSubmit={verify2fa} className="mt-4 space-y-3">
@@ -78,5 +84,5 @@ function TwoFactorPage() {
         {status ? <p className="mt-3 text-sm">{status}</p> : null}
       </section>
     </main>
-  )
+  );
 }
