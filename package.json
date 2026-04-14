@@ -2,6 +2,9 @@
   "name": "ackmoney",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "imports": {
     "#/*": "./src/*"
   },
