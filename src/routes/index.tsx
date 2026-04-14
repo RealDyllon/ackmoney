@@ -21,8 +21,8 @@ function App() {
           TanStack Start + Tailwind + shadcn-style primitives with SG-ready defaults.
         </p>
         <div className="flex flex-wrap gap-3">
-          <Link to="/transactions" className="no-underline">
-            <Button>View transactions</Button>
+          <Link to="/auth/sign-in" className="no-underline">
+            <Button>Get started</Button>
           </Link>
           <Link to="/budgets" className="no-underline">
             <Button variant="secondary">Open budgets</Button>

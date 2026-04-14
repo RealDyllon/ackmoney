@@ -15,6 +15,8 @@ import { Route as BudgetsRouteImport } from './routes/budgets'
 import { Route as AccountsRouteImport } from './routes/accounts'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
+import { Route as Auth2faRouteImport } from './routes/auth/2fa'
 
 const TransactionsRoute = TransactionsRouteImport.update({
   id: '/transactions',
@@ -46,6 +48,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthSignInRoute = AuthSignInRouteImport.update({
+  id: '/auth/sign-in',
+  path: '/auth/sign-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Auth2faRoute = Auth2faRouteImport.update({
+  id: '/auth/2fa',
+  path: '/auth/2fa',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +66,8 @@ export interface FileRoutesByFullPath {
   '/budgets': typeof BudgetsRoute
   '/reports': typeof ReportsRoute
   '/transactions': typeof TransactionsRoute
+  '/auth/2fa': typeof Auth2faRoute
+  '/auth/sign-in': typeof AuthSignInRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +76,8 @@ export interface FileRoutesByTo {
   '/budgets': typeof BudgetsRoute
   '/reports': typeof ReportsRoute
   '/transactions': typeof TransactionsRoute
+  '/auth/2fa': typeof Auth2faRoute
+  '/auth/sign-in': typeof AuthSignInRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +87,8 @@ export interface FileRoutesById {
   '/budgets': typeof BudgetsRoute
   '/reports': typeof ReportsRoute
   '/transactions': typeof TransactionsRoute
+  '/auth/2fa': typeof Auth2faRoute
+  '/auth/sign-in': typeof AuthSignInRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,8 +99,18 @@ export interface FileRouteTypes {
     | '/budgets'
     | '/reports'
     | '/transactions'
+    | '/auth/2fa'
+    | '/auth/sign-in'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/accounts' | '/budgets' | '/reports' | '/transactions'
+  to:
+    | '/'
+    | '/about'
+    | '/accounts'
+    | '/budgets'
+    | '/reports'
+    | '/transactions'
+    | '/auth/2fa'
+    | '/auth/sign-in'
   id:
     | '__root__'
     | '/'
@@ -91,6 +119,8 @@ export interface FileRouteTypes {
     | '/budgets'
     | '/reports'
     | '/transactions'
+    | '/auth/2fa'
+    | '/auth/sign-in'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -100,6 +130,8 @@ export interface RootRouteChildren {
   BudgetsRoute: typeof BudgetsRoute
   ReportsRoute: typeof ReportsRoute
   TransactionsRoute: typeof TransactionsRoute
+  Auth2faRoute: typeof Auth2faRoute
+  AuthSignInRoute: typeof AuthSignInRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -146,6 +178,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth/sign-in': {
+      id: '/auth/sign-in'
+      path: '/auth/sign-in'
+      fullPath: '/auth/sign-in'
+      preLoaderRoute: typeof AuthSignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/2fa': {
+      id: '/auth/2fa'
+      path: '/auth/2fa'
+      fullPath: '/auth/2fa'
+      preLoaderRoute: typeof Auth2faRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -156,6 +202,8 @@ const rootRouteChildren: RootRouteChildren = {
   BudgetsRoute: BudgetsRoute,
   ReportsRoute: ReportsRoute,
   TransactionsRoute: TransactionsRoute,
+  Auth2faRoute: Auth2faRoute,
+  AuthSignInRoute: AuthSignInRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
